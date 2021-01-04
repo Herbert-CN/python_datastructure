@@ -46,6 +46,7 @@ class LRUCache:
                     self._size -= 1
                     self._enqueue(cur._key, cur._value)
                     found = True
+                    break
                 else:
                     prev, cur = cur, cur._next
             if not found:
@@ -80,12 +81,9 @@ class LRUCache:
 
 if __name__ == '__main__':
     lru_cache = LRUCache(2)
-    lru_cache.put(1,1)
-    lru_cache.put(2,2)
+    lru_cache.put(2, 1)
+    lru_cache.put(1, 1)
+    lru_cache.put(2, 3)
+    lru_cache.put(4, 1)
     print(lru_cache.get(1))
-    lru_cache.put(3,3)
     print(lru_cache.get(2))
-    lru_cache.put(4,4)
-    print(lru_cache.get(1))
-    print(lru_cache.get(3))
-    print(lru_cache.get(4))
