@@ -52,6 +52,8 @@ class Solution:
         while True:
             if fast.next is None:
                 return False
+            elif fast.next == slow:
+                return True
             else:
                 fast = fast.next.next
                 slow = slow.next
