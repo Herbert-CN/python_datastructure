@@ -1,17 +1,31 @@
 class Solution:
     grid = [[None for _ in range(9)] for _ in range(9)]
 
-    def find(self, curRow: int) -> bool:
-        if curRow == 9:
+    def solve(self):
+        cell = self.getNoneCell()
+        if not cell:  # cell is None and all cells have value
             return True
+        else:
+            row, col = cell
+        for value in range(1, 10):
+            if self.isValid(row, col, value):
+                self.grid[row][col] = value
 
-        for col in range(9):
-            if self.grid[curRow][col] is None:  # cell is None
-                for value in range(1, 10):
-                    if self.isValid(curRow, col, value):
-                        self.grid[curRow][col] = value
-                        self.find(curRow + 1)
+                if self.solve():
+                    return True
+
+                self.grid[row][col] = None
+
         return False
+
+
+    def getNoneCell(self):
+        for row in range(9):
+            for col in range(9):
+                if self.grid[row][col] is None:
+                    return row, col
+        return None
+
 
     def isValid(self, row, col, value):  # Check if value valid for row, col
         for i in range(9): # check row
@@ -29,6 +43,8 @@ class Solution:
 
     def updateGrid(self, row, col, value):
         self.grid[row][col] = value
+
+
 
 
 if __name__ == '__main__':
@@ -61,5 +77,5 @@ if __name__ == '__main__':
 
     # print(test.grid)
 
-    test.find(0)
+    test.solve()
     print(test.grid)

@@ -20,7 +20,7 @@ class Solution:
 
 if __name__ == '__main__':
     test = Solution()
-    result_final = test.permutation("abcdefg")
+    result_final = test.permutation("a1b2")
     print(result_final)
 
 
